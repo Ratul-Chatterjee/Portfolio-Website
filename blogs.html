@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="logo-icon" href="assets/Portfolio Logo.png">
+        <title>Ratul Chatterjee | Blogs</title>
+        <link rel="stylesheet" href="styles.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    </head>
+    
+    <body>
+
+<!------------------------------------------------- Header ------------------------------------------------------>
+<div class="back-btn">
+  <a class="back-button" href="index.html" aria-label="Back to home">
+    <!-- Material-style "arrow_back" SVG (fills with currentColor) -->
+    <svg class="back-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+      <path d="M19 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H19v-2z"/>
+    </svg>
+    <span class="back-label">Back</span>
+  </a>
+</div>
+
+<div class="mobile-header">
+    <h2 class="mobile-view">PORTFOLIO WEBSITE</h2>
+    <button class="menu-button" onclick="showSidebar()" aria-label="Open menu">
+    <svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26" fill="currentColor">
+      <path d="M120 816v-60h720v60H120Zm0-210v-60h720v60H120Zm0-210v-60h720v60H120Z"/>
+    </svg>
+    </button>
+    </div>
+    <nav>
+    <ul class="mobile-menu">
+        <li onclick=hideSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26"><path d="m249 849-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z"/></svg></a></li>
+        <li><a href="index.html">Back</a></li>
+        <li><a href="games.html">Games</a></li>
+        <li><a href="contactme.html">Contact Me</a></li>
+    </ul>
+
+        <section class="blog-section" id="blog">
+        <div class="container-blog">
+            <h1 class="section-blog">Blogs</h1>
+            <p class="author-name">By Ratul Chatterjee</p>
+
+            <h2 class="latest-blog-title">Latest Posts</h2>
+            
+            <div class="blog-grid">
+                <article class="blog-card">
+                    <div class="card-image">
+                        <img src="" alt="Coming Soon">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span>Ratul Chatterjee</span>
+                            <span>Date</span>
+                        </div>
+                        <h3 class="card-title">Coming Soon</h3>
+                        <p class="card-excerpt">Details here.</p>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="card-image">
+                        <img src="" alt="Coming Soon">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span>Ratul Chatterjee</span>
+                            <span>Date</span>
+                        </div>
+                        <h3 class="card-title">Coming Soon</h3>
+                        <p class="card-excerpt">Details here.</p>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="card-image">
+                        <img src="" alt="Coming Soon">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span>Ratul Chatterjee</span>
+                            <span>Date</span>
+                        </div>
+                        <h3 class="card-title">Coming Soon</h3>
+                        <p class="card-excerpt">Details here.</p>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+        <!------------------------------------ Tactical Scale --------------------------------------------->
+        <section id="tactical-scale" class="backgroung-section">
+            <div class="tactical-scale left" aria-hidden="true">
+                <div class="scale-content" id="left-scale"></div>
+            </div>
+            <div class="tactical-scale right" aria-hidden="true">
+                <div class="scale-content" id="right-scale"></div>
+            </div>
+        </section>
+        
+        <!---------------------------------------- Background ---------------------------------------------->
+        <div class="grid-container" id="gridContainer">
+            <svg class="grid-svg" id="gridSvg">
+                <!-- Grid lines will be generated by JavaScript -->
+            </svg>
+        </div>
+
+
+<script>
+/*------------------------------------------- Mobile Responsive --------------------------------------*/
+function showSidebar(){
+      const sidebar = document.querySelector('.mobile-menu')
+      sidebar.style.display = 'flex'
+    }
+    function hideSidebar(){
+      const sidebar = document.querySelector('.mobile-menu')
+      sidebar.style.display = 'none'
+    }
+/*-------------------------------------------- Body ----------------------------------------------------------*/
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        // IntersectionObserver without slide-in-up effect
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Removed slideInUp animation
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.blog-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Add click ripple effect to cards
+        document.querySelectorAll('.blog-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.cssText = `
+                    position: absolute;
+                    width: ${size}px;
+                    height: ${size}px;
+                    left: ${x}px;
+                    top: ${y}px;
+                    background: rgba(220, 38, 38, 0.3);
+                    border-radius: 50%;
+                    transform: scale(0);
+                    animation: ripple 0.6s ease-out;
+                    pointer-events: none;
+                    z-index: 1;
+                `;
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+        // Add ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(2);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+/*------------------------------------------- Tactical Scale ---------------------------------------------*/
+            const rowHeight = 12;
+            const totalRows = Math.ceil(document.body.scrollHeight / rowHeight) + 20;
+
+            function populateTacticalScale(selector) {
+            const container = document.querySelector(selector);
+            const content = container.querySelector('.scale-content');
+            let rows = '';
+            for (let i = 0; i < totalRows; i++) {
+                const padded = i.toString().padStart(3, '0');
+                const isTick = i % 5 === 0;
+                rows += `
+                <div class="scale-row">
+                    <span class="number">${padded}</span>
+                    <span class="${isTick ? 'tick' : 'dot'}"></span>
+                </div>
+                `;
+            }
+            content.innerHTML = rows;
+            }
+
+            populateTacticalScale('.tactical-scale.left');
+            populateTacticalScale('.tactical-scale.right');
+
+            function updateScalePosition() {
+            const scrollY = window.scrollY;
+            document.querySelectorAll('.scale-content').forEach(content => {
+                content.style.transform = `translateY(-${scrollY}px)`;
+            });
+            }
+
+            window.addEventListener('scroll', updateScalePosition);
+            window.addEventListener('load', updateScalePosition);
+
+/*-----------------------------------------Background-----------------------------------------------*/
+const gridContainer = document.getElementById('gridContainer');
+        const gridSvg = document.getElementById('gridSvg');
+        const gridSize = 25;
+        let glowAnimations = [];
+
+        function createGrid() {
+            const containerWidth = gridContainer.offsetWidth;
+            const containerHeight = gridContainer.offsetHeight;
+            
+            let svgContent = '';
+            let verticalLines = [];
+            let horizontalLines = [];
+            
+            // Create vertical lines
+            for (let x = 0; x <= containerWidth; x += gridSize) {
+                svgContent += `<line class="grid-line" x1="${x}" y1="0" x2="${x}" y2="${containerHeight}"></line>`;
+                verticalLines.push({x1: x, y1: 0, x2: x, y2: containerHeight, type: 'vertical'});
+            }
+            
+            // Create horizontal lines
+            for (let y = 0; y <= containerHeight; y += gridSize) {
+                svgContent += `<line class="grid-line" x1="0" y1="${y}" x2="${containerWidth}" y2="${y}"></line>`;
+                horizontalLines.push({x1: 0, y1: y, x2: containerWidth, y2: y, type: 'horizontal'});
+            }
+            
+            gridSvg.innerHTML = svgContent;
+            
+            // Store line data for glow animations
+            glowAnimations = [...verticalLines, ...horizontalLines];
+            
+            // Start glow animations
+            startGlowAnimations();
+        }
+
+        function startGlowAnimations() {
+            // Clear any existing intervals
+            if (window.glowInterval) {
+                clearInterval(window.glowInterval);
+            }
+            
+            window.glowInterval = setInterval(() => {
+                createRandomGlow();
+            }, 800); // Create a new glow every 800ms
+        }
+
+        function createRandomGlow() {
+            if (glowAnimations.length === 0) return;
+            
+            // Select a random line
+            const randomLine = glowAnimations[Math.floor(Math.random() * glowAnimations.length)];
+            
+            // Create glow element
+            const glowLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            glowLine.setAttribute('class', `glow-line glow-${randomLine.type}`);
+            glowLine.setAttribute('x1', randomLine.x1);
+            glowLine.setAttribute('y1', randomLine.y1);
+            glowLine.setAttribute('x2', randomLine.x2);
+            glowLine.setAttribute('y2', randomLine.y2);
+            
+            // Add random animation delay
+            const delay = Math.random() * 2;
+            glowLine.style.animationDelay = `${delay}s`;
+            
+            // Add to SVG
+            gridSvg.appendChild(glowLine);
+            
+            // Remove after animation completes
+            setTimeout(() => {
+                if (glowLine.parentNode) {
+                    glowLine.parentNode.removeChild(glowLine);
+                }
+            }, 4000 + (delay * 1000));
+        }
+
+        function updateGrid() {
+            setTimeout(createGrid, 50);
+        }
+
+        // Initialize
+        createGrid();
+        
+        // Recreate grid on window resize
+        window.addEventListener('resize', updateGrid);
+        
+        // Clean up on page unload
+        window.addEventListener('beforeunload', () => {
+            if (window.glowInterval) {
+                clearInterval(window.glowInterval);
+            }
+        });
+
+/*-------------------------------------------------Footer------------------------------------------*/
+            // Set current year in footer
+            document.getElementById('year').textContent = new Date().getFullYear();
+            const btn = document.getElementById('scroll-top-btn');
+            btn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+</script>
+
+<!------------------------------------------- Footer --------------------------------------------------->
+            <footer>
+            <center><h1>RATUL CHATTERJEE</h1></center>
+
+            <div class="social-icons">
+            <a
+                class="social-icon"
+                href="https://www.linkedin.com/in/ratulchatterjee99"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24">
+                <path
+                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                />
+                </svg>
+            </a>
+
+            <a
+                class="social-icon"
+                href="https://github.com/Ratul-Chatterjee"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub">
+                <svg viewBox="0 0 24 24">
+                <path
+                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                />
+                </svg>
+            </a>
+
+            <a
+                class="social-icon"
+                href="mailto:ratul.9chatterjee@gmail.com"
+                aria-label="Email">
+                <svg viewBox="0 0 24 24">
+                <path
+                    d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-.904.732-1.636 1.636-1.636h.472L12 8.909l9.892-5.088h.472c.904 0 1.636.732 1.636 1.636z"/>
+                </svg>
+            </a>
+            </div>
+
+            <div class="footer-bottom">
+                    <div class="copyright-bar">
+                        &copy; Made by Ratul Chatterjee&nbsp; <span id="year"></span>
+                    </div>
+                    <div class="no-time-bar">
+                        NO TIME TO DIE!
+                    </div>
+                </div>
+            </footer>
+    </body>
+</html>
